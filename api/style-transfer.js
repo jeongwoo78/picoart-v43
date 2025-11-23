@@ -90,20 +90,19 @@ async function handler(req, res) {
 
 async function callFlux(image, prompt, negativePrompt) {
   return rateLimiter.addToQueue(async () => {
-    // FLUX Depth Dev로 복귀 - 품질 우선
+    // FLUX Depth Dev - 원본과 동일한 방식 사용
     console.log('🎨 Using FLUX Depth Dev - Quality First');
     
     const response = await fetch(
-      'https://api.replicate.com/v1/predictions',
+      'https://api.replicate.com/v1/models/black-forest-labs/flux-depth-dev/predictions',
       {
         method: 'POST',
         headers: {
           'Authorization': `Token ${process.env.REPLICATE_API_KEY}`,
           'Content-Type': 'application/json',
-          'Prefer': 'wait=60'
+          'Prefer': 'wait'
         },
         body: JSON.stringify({
-          version: '28438a6bef43db1d8255e271ca2ef528fb19a7d969fb37d4f8c27dc365cf0045',  // black-forest-labs/flux-depth-dev
           input: {
             control_image: image,
             prompt: prompt,
@@ -119,7 +118,7 @@ async function callFlux(image, prompt, negativePrompt) {
 
     if (!response.ok) {
       const errorText = await response.text();
-      console.error('SDXL API Error:', response.status, errorText);
+      console.error('FLUX API Error:', response.status, errorText);
       if (response.status === 429) {
         const errorData = JSON.parse(errorText);
         const error = new Error(errorData.detail || 'Rate limited');
