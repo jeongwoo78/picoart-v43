@@ -127,7 +127,7 @@ async function callFlux(image, prompt, negativePrompt) {
         error.retry_after = errorData.retry_after || 10;
         throw error;
       }
-      throw new Error(`SDXL API error: ${response.status}`);
+      throw new Error(`FLUX API error: ${response.status}`);
     }
 
     const data = await response.json();
