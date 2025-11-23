@@ -170,15 +170,3 @@ export function getExpressionismGuidelines() {
 - Marc: Spiritual animals, pure colors`;
 }
 // Export all functions
-export {
-  getAncientGreekRomanGuidelines,
-  getMedievalGuidelines,
-  getRenaissanceGuidelines,
-  getBaroqueGuidelines,
-  getRococoGuidelines,
-  getNeoclassicalRomanticismRealismGuidelines,
-  getImpressionismGuidelines,
-  getPostImpressionismGuidelines,
-  getFauvismGuidelines,
-  getExpressionismGuidelines
-};

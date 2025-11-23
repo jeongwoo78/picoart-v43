@@ -132,12 +132,3 @@ export function getOrientalArtEnforcement(isOriental) {
   return `, CRITICAL: NOT photographic NOT photo-realistic, fully oil painting with thick visible brushstrokes and canvas texture, PRESERVE facial features expressions and identity of people in photo, PRESERVE GENDER accurately (male stays male with masculine features, female stays female with feminine features), TRANSFORM modern clothing and accessories to period-appropriate historical costume and style, unified composition all figures together, ${enforceNoJapanese()}, this is 100% PURE KOREAN or CHINESE TRADITIONAL ART not Japanese`;
 }
 
-export {
-  getKoreanArtGuidelines,
-  getChineseArtGuidelines,
-  getJapaneseArtGuidelines,
-  isOrientalStyle,
-  getKoreanSpecialProcessing,
-  enforceNoJapanese,
-  getOrientalArtEnforcement
-};

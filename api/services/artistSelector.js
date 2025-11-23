@@ -202,8 +202,3 @@ export function getArtistGuidelines(style) {
   return styleGuideMap[era.toLowerCase()] || 'Various artists';
 }
 
-export {
-  selectArtistWithAI,
-  analyzeImageForArtist,
-  getArtistGuidelines
-};

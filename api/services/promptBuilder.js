@@ -135,12 +135,4 @@ export function logPromptDetails(originalPrompt, finalPrompt, selectedArtist) {
   console.log('================================\n');
 }
 
-export {
-  buildArtistPrompt,
-  addPaintingEnforcement,
-  getControlStrength,
-  STYLE_TEMPLATES,
-  cleanupPrompt,
-  logPromptDetails,
-  convertFluxToSDXL  // SDXL 변환 함수 export
-};
+// convertFluxToSDXL은 sdxlPromptOptimizer.js에서 import
