@@ -170,7 +170,7 @@ export function getExpressionismGuidelines() {
 - Marc: Spiritual animals, pure colors`;
 }
 // Export all functions
-module.exports = {
+export {
   getAncientGreekRomanGuidelines,
   getMedievalGuidelines,
   getRenaissanceGuidelines,

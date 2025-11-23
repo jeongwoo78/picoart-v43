@@ -2,15 +2,15 @@
 // flux-transfer.js에서 분리된 프롬프트 빌딩 관련 함수들
 // v43: SDXL Lightning 지원 추가
 
-const { 
+import { 
   isOrientalStyle, 
   getKoreanSpecialProcessing, 
   getOrientalArtEnforcement 
-} = require('./orientalArt.js');
+} from './orientalArt.js';
 
-const {
+import {
   convertFluxToSDXL
-} = require('./sdxlPromptOptimizer.js');
+} from './sdxlPromptOptimizer.js';
 
 // 메인 프롬프트 빌더
 export function buildArtistPrompt(basePrompt, selectedArtist, style) {
@@ -135,7 +135,7 @@ export function logPromptDetails(originalPrompt, finalPrompt, selectedArtist) {
   console.log('================================\n');
 }
 
-module.exports = {
+export {
   buildArtistPrompt,
   addPaintingEnforcement,
   getControlStrength,

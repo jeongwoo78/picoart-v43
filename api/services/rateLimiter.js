@@ -57,4 +57,4 @@ class RateLimiter {
 
 const rateLimiter = new RateLimiter();
 
-module.exports = { rateLimiter };
+export { rateLimiter };

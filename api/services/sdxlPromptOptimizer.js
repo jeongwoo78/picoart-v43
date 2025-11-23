@@ -122,7 +122,7 @@ function convertFluxToSDXL(fluxPrompt, selectedStyle, aiSelectedArtist) {
   };
 }
 
-module.exports = {
+export {
   optimizeForSDXL,
   optimizeOrientalForSDXL,
   optimizeMasterForSDXL,

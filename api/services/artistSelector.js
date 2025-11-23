@@ -1,7 +1,7 @@
 // artistSelector.js - AI 화가 선택 로직
 // flux-transfer.js에서 분리된 화가 선택 관련 함수들
 
-const Anthropic = require('@anthropic-ai/sdk');
+import Anthropic from '@anthropic-ai/sdk';
 
 // Anthropic 클라이언트 초기화
 const anthropic = new Anthropic({
@@ -202,7 +202,7 @@ export function getArtistGuidelines(style) {
   return styleGuideMap[era.toLowerCase()] || 'Various artists';
 }
 
-module.exports = {
+export {
   selectArtistWithAI,
   analyzeImageForArtist,
   getArtistGuidelines

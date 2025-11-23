@@ -1,23 +1,23 @@
 // style-transfer.js - 통합 API (SDXL Lightning 전용)
 // v43: 함수 개수 제한 해결을 위한 통합 버전
 
-const { 
+import { 
   selectArtistWithAI, 
   analyzeImageForArtist, 
   getArtistGuidelines 
-} = require('./services/artistSelector.js');
+} from './services/artistSelector.js';
 
-const { 
+import { 
   buildArtistPrompt, 
   getControlStrength, 
   cleanupPrompt,
   logPromptDetails
-} = require('./services/promptBuilder.js');
+} from './services/promptBuilder.js';
 
-const { convertFluxToSDXL } = require('./services/sdxlPromptOptimizer.js');
-const styleGuides = require('./services/styleGuides.js');
-const orientalArt = require('./services/orientalArt.js');
-const { rateLimiter } = require('./services/rateLimiter.js');
+import { convertFluxToSDXL } from './services/sdxlPromptOptimizer.js';
+import * as styleGuides from './services/styleGuides.js';
+import * as orientalArt from './services/orientalArt.js';
+import { rateLimiter } from './services/rateLimiter.js';
 
 // 메인 핸들러 - SDXL 기본
 async function handler(req, res) {
@@ -129,4 +129,4 @@ function getStyleGuidelines(style) {
   return guideMap[era] ? guideMap[era]() : '';
 }
 
-module.exports = handler;
+export default handler;
