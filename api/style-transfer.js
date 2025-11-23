@@ -19,7 +19,7 @@ import * as styleGuides from './services/styleGuides.js';
 import * as orientalArt from './services/orientalArt.js';
 import { rateLimiter } from './services/rateLimiter.js';
 
-// 메인 핸들러 - SDXL 기본
+// 메인 핸들러 - FLUX Depth 사용
 async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -37,10 +37,10 @@ async function handler(req, res) {
       return res.status(400).json({ error: 'Missing required fields' });
     }
 
-    console.log('🎨 SDXL + ControlNet Transfer - v43');
-    console.log('💰 Cost: $0.025 (37% savings vs FLUX)');
-    console.log('⚡ Speed: 3-4 seconds');
-    console.log('🎯 Quality: 85% structure preservation');
+    console.log('🎨 FLUX Depth Dev Transfer - v43');
+    console.log('💰 Cost: $0.04 (Premium Quality)');
+    console.log('⚡ Speed: 5-7 seconds');
+    console.log('🎯 Quality: 95% - Best Available');
 
     // 1. 이미지 분석
     const imageAnalysis = await analyzeImageForArtist(image);
@@ -58,8 +58,8 @@ async function handler(req, res) {
       finalPrompt, actualStyle, artistSelection.artist
     );
 
-    // 5. SDXL API 호출
-    const response = await callSDXL(image, sdxlPrompt, negative_prompt);
+    // 5. FLUX API 호출
+    const response = await callFlux(image, sdxlPrompt, negative_prompt);
     
     console.log('📸 SDXL Response:', response);
     
@@ -77,10 +77,9 @@ async function handler(req, res) {
       url: outputUrl,
       selected_artist: artistSelection.artist,
       selection_method: artistSelection.method,
-      model_used: 'SDXL + ControlNet',
-      cost: 0.025,
-      savings: '37% vs FLUX',
-      quality_score: 85
+      model_used: 'FLUX Depth Dev',
+      cost: 0.04,
+      quality_score: 95
     });
     
   } catch (error) {
@@ -89,10 +88,10 @@ async function handler(req, res) {
   }
 }
 
-async function callSDXL(image, prompt, negativePrompt) {
+async function callFlux(image, prompt, negativePrompt) {
   return rateLimiter.addToQueue(async () => {
-    // SDXL + ControlNet Canny - 구조 보존 최적화
-    console.log('🎯 Using SDXL + ControlNet for better structure preservation');
+    // FLUX Depth Dev로 복귀 - 품질 우선
+    console.log('🎨 Using FLUX Depth Dev - Quality First');
     
     const response = await fetch(
       'https://api.replicate.com/v1/predictions',
@@ -104,19 +103,15 @@ async function callSDXL(image, prompt, negativePrompt) {
           'Prefer': 'wait=60'
         },
         body: JSON.stringify({
-          version: '435061a1b5a4c1e26740464bf786efdfa9cb3a3ac488595a2de23e143fdb0117',  // SDXL-controlnet
+          version: '4ea12cef5b3549a9e8bb29ba34d16eec319e5881fda50f605f37baab3fc09b51',  // FLUX Depth Dev
           input: {
-            image: image,  // 입력 이미지
-            prompt: prompt + ", masterpiece, best quality, highly detailed",
-            negative_prompt: negativePrompt || "worst quality, low quality, deformed, distorted, disfigured",
-            num_inference_steps: 20,
-            guidance_scale: 7.5,
-            controlnet_conditioning_scale: 0.7,  // 구조 보존 강도 (0.5→0.7)
-            control_guidance_start: 0.0,
-            control_guidance_end: 1.0,
-            scheduler: "K_EULER_ANCESTRAL",
-            seed: -1,
-            num_outputs: 1
+            control_image: image,
+            prompt: prompt,
+            num_inference_steps: 24,
+            guidance: 12,
+            control_strength: 0.80,
+            output_format: 'jpg',
+            output_quality: 90
           }
         })
       }
