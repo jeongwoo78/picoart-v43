@@ -103,7 +103,7 @@ async function callFlux(image, prompt, negativePrompt) {
           'Prefer': 'wait=60'
         },
         body: JSON.stringify({
-          version: '4ea12cef5b3549a9e8bb29ba34d16eec319e5881fda50f605f37baab3fc09b51',  // FLUX Depth Dev
+          version: '2a865c8b7ac162a14ba2ad8dc9f6b3a3cf8e5ef04e771e47f3e71bce13bccffa',  // FLUX Depth Dev 최신 버전
           input: {
             control_image: image,
             prompt: prompt,
