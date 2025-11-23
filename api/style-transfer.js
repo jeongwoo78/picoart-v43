@@ -59,9 +59,21 @@ async function handler(req, res) {
 
     // 5. SDXL API 호출
     const response = await callSDXL(image, sdxlPrompt, negative_prompt);
+    
+    console.log('📸 SDXL Response:', response);
+    
+    // output URL 확인
+    const outputUrl = response.output?.[0] || response.output || response.url;
+    
+    if (!outputUrl) {
+      console.error('❌ No output URL in response:', response);
+      throw new Error('No output URL received from SDXL');
+    }
 
     res.status(200).json({
       ...response,
+      output: outputUrl,
+      url: outputUrl,
       selected_artist: artistSelection.artist,
       selection_method: artistSelection.method,
       model_used: 'SDXL img2img',
