@@ -53,13 +53,10 @@ async function handler(req, res) {
     let finalPrompt = buildArtistPrompt(actualPrompt, artistSelection.artist, actualStyle);
     finalPrompt = cleanupPrompt(finalPrompt);
 
-    // 4. SDXL 최적화
-    const { prompt: sdxlPrompt, negative_prompt } = convertFluxToSDXL(
-      finalPrompt, actualStyle, artistSelection.artist
-    );
-
+    // 4. FLUX용 원본 프롬프트 사용 (SDXL 변환 제거)
+    
     // 5. FLUX API 호출
-    const response = await callFlux(image, sdxlPrompt, negative_prompt);
+    const response = await callFlux(image, finalPrompt, null);
     
     console.log('📸 SDXL Response:', response);
     

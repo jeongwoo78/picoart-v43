@@ -192,7 +192,7 @@ export function getArtistGuidelines(style) {
     'rococo': 'Watteau, Fragonard',
     'neoclassical': 'David, Ingres, Turner, Friedrich, Delacroix, Millet, Manet',
     'impressionism': 'Monet, Renoir, Degas, Morisot',
-    'post-impressionism': 'Van Gogh, Gauguin, Cézanne, Seurat',
+    'post-impressionism': 'Van Gogh, Gauguin, Cézanne, Seurat (Choose ONLY from these 4 artists)',
     'fauvism': 'Matisse, Derain, Vlaminck',
     'expressionism': 'Munch, Schiele, Kirchner, Nolde, Marc'
   };
